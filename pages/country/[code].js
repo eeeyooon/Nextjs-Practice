@@ -1,3 +1,4 @@
+import SubLayout from "@/components/SubLayout";
 import { useRouter } from "next/router";
 // Next에서 제공하는 커스텀 훅. router 객체를 반환하는 함수인데,
 // router 객체 안에 라우팅과 관련된 대부분의 정보가 다 저장되어있음.
@@ -12,3 +13,5 @@ export default function Country() {
 
   return <div>Country code : {code}</div>;
 }
+
+Country.Layout = SubLayout;
