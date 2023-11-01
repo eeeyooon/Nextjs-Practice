@@ -9,6 +9,14 @@ export default function Country({ country }) {
   const { code } = router.query;
   // code 변수에 url 파라미터로 전달된 국가코드 저장.
 
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
+  if (!country) {
+    return <div>존재하지 않는 국가입니다.</div>;
+  }
+
   return (
     <div>
       {country.commonName} {country.officialName}
@@ -21,7 +29,7 @@ Country.Layout = SubLayout;
 export const getStaticPaths = async () => {
   return {
     paths: [{ params: { code: "ABW" } }, { params: { code: "KOR" } }],
-    fallback: false,
+    fallback: true,
   };
 };
 
