@@ -1,7 +1,7 @@
 import { fetchSearchResults } from "@/api";
 import SubLayout from "@/components/SubLayout";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Search() {
   const router = useRouter();
