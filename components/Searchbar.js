@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import style from "./Searchbar.module.css";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 
 export default function Searchbar({ q }) {
   const [search, setSearch] = useState("");
-  const nav = useNavigate();
+  const router = useRouter();
 
   useEffect(() => {
     setSearch(q);
@@ -22,7 +22,7 @@ export default function Searchbar({ q }) {
 
   const onClickSearch = () => {
     if (search !== "") {
-      nav(`/search?q=${search}`);
+      router.push(`/search?q=${search}`);
     }
   };
 
