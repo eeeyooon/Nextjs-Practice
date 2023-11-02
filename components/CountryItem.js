@@ -1,5 +1,5 @@
 import style from "./CountryItem.module.css";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 
 export default function CountryItem({
   code,
@@ -10,10 +10,10 @@ export default function CountryItem({
   region,
   capital,
 }) {
-  const nav = useNavigate();
+  const router = useRouter();
 
   const onClickItem = () => {
-    nav(`/country/${code}`);
+    router.push(`/country/${code}`);
   };
 
   return (
