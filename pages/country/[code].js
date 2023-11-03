@@ -1,13 +1,12 @@
 import { fetchCountry } from "@/api";
 import SubLayout from "@/components/SubLayout";
 import { useRouter } from "next/router";
-// Next에서 제공하는 커스텀 훅. router 객체를 반환하는 함수인데,
-// router 객체 안에 라우팅과 관련된 대부분의 정보가 다 저장되어있음.
+import Image from "next/image";
+import style from "./[code].module.css";
 
 export default function Country({ country }) {
   const router = useRouter();
   const { code } = router.query;
-  // code 변수에 url 파라미터로 전달된 국가코드 저장.
 
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -18,8 +17,35 @@ export default function Country({ country }) {
   }
 
   return (
-    <div>
-      {country.commonName} {country.officialName}
+    <div className={style.container}>
+      <div className={style.header}>
+        <div className={style.commonName}>
+          {country.flagEmoji}&nbsp;{country.commonName}
+        </div>
+        <div className={style.officialName}>{country.officialName}</div>
+      </div>
+
+      <div className={style.flag_img}>
+        <Image src={country.flagImg} alt="국가 이미지" fill />
+      </div>
+
+      <div className={style.body}>
+        <div>
+          <b>코드 :</b>&nbsp;{country.code}
+        </div>
+        <div>
+          <b>수도 :</b>&nbsp;{country.capital.join(", ")}
+        </div>
+        <div>
+          <b>지역 :</b>&nbsp;{country.region}
+        </div>
+        <div>
+          <b>지도 :</b>&nbsp;
+          <a target="_blank" href={country.googleMapURL}>
+            {country.googleMapURL}
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
@@ -35,7 +61,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const { code } = context.params;
-  console.log(`${code} 페이지 생성!`);
 
   let country = null;
 
