@@ -26,7 +26,6 @@ export const getStaticProps = async () => {
 
   // 전체 국가 데이터 불러오기
   const countries = await fetchCountries();
-  console.log("countries 데이터 불러옴.");
 
   return {
     props: {
