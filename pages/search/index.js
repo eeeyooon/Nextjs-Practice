@@ -28,10 +28,10 @@ export default function Search() {
       <Head>
         <title>NARAS 검색</title>
         <meta property="og:image" content="/thumbnail.png" />
-        <meta property="og:title" content={`${q} 검색 결과 | NARAS`} />
+        <meta property="og:title" content="NARAS 검색 결과" />
         <meta
           property="og:description"
-          content={`${q}의 검색 결과를 확인하세요.`}
+          content="해당 국가의 검색 결과를 확인해보세요."
         />
       </Head>
       <Searchbar q={q} />
